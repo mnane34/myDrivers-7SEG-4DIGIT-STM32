@@ -61,3 +61,59 @@ Controls the decimal point segment of all digits. Can be turned ON or OFF indepe
 ![Shematic](images/shematic.JPG)
 
 In this application, the STM32 Nucleo F446RE development board was used. You can refer to the above wiring diagram.
+
+# 🚀 Code Explanation
+
+<pre><code class="language-c">void DISPLAY_init(TIM_HandleTypeDef * hTIMx, GPIO_TypeDef* D1_GPIO, uint16_t  D1_PIN,
+										GPIO_TypeDef* D2_GPIO, uint16_t  D2_PIN,
+										GPIO_TypeDef* D3_GPIO, uint16_t  D3_PIN,
+										GPIO_TypeDef* D4_GPIO, uint16_t  D4_PIN,
+										GPIO_TypeDef* A_GPIO, uint16_t  A_PIN,
+										GPIO_TypeDef* B_GPIO, uint16_t  B_PIN,
+										GPIO_TypeDef* C_GPIO, uint16_t  C_PIN,
+										GPIO_TypeDef* D_GPIO, uint16_t  D_PIN,
+										GPIO_TypeDef* E_GPIO, uint16_t  E_PIN,
+										GPIO_TypeDef* F_GPIO, uint16_t  F_PIN,
+										GPIO_TypeDef* G_GPIO, uint16_t  G_PIN,
+										GPIO_TypeDef* DOT_GPIO, uint16_t  DOT_PIN);
+</code></pre>
+
+<pre><code class="language-c">void DISPLAY_allSegmentON(void);
+</code></pre>
+
+<pre><code class="language-c">void DISPLAY_allSegmentOFF(void);
+</code></pre>
+
+<pre><code class="language-c">void DISPLAY_allDigitsOFF(void);
+</code></pre>
+
+<pre><code class="language-c">void DISPLAY_allSegmentBlink(void);
+</code></pre>
+
+<pre><code class="language-c">void DISPLAY_selectDigit(uint8_t digit);
+</code></pre>
+
+<pre><code class="language-c">void DISPLAY_writeDigit(uint8_t number);
+</code></pre>
+
+<pre><code class="language-c">void DISPLAY_write(volatile uint16_t number);
+</code></pre>
+
+# 🖥️ Test Highlights
+
+You can easily test the 7-Segment 4-Digit Display using the following code snippet
+
+<pre><code class="language-c">#include "main.h"
+</code></pre>
+
+![test](images/test.jpg)
+
+## 🎉 Thank You for Reviewing!
+
+Thank you for taking the time to check out this project.
+
+Feel free to follow me on these platforms for more updates and projects.
+
+- YouTube: @mnane34
+
+- LinkedIn: Mertcan Nane
