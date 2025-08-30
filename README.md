@@ -65,45 +65,113 @@ In this application, the STM32 Nucleo F446RE development board was used. You can
 # 🚀 Code Explanation
 
 <pre><code class="language-c">void DISPLAY_init(TIM_HandleTypeDef * hTIMx, GPIO_TypeDef* D1_GPIO, uint16_t  D1_PIN,
-										GPIO_TypeDef* D2_GPIO, uint16_t  D2_PIN,
-										GPIO_TypeDef* D3_GPIO, uint16_t  D3_PIN,
-										GPIO_TypeDef* D4_GPIO, uint16_t  D4_PIN,
-										GPIO_TypeDef* A_GPIO, uint16_t  A_PIN,
-										GPIO_TypeDef* B_GPIO, uint16_t  B_PIN,
-										GPIO_TypeDef* C_GPIO, uint16_t  C_PIN,
-										GPIO_TypeDef* D_GPIO, uint16_t  D_PIN,
-										GPIO_TypeDef* E_GPIO, uint16_t  E_PIN,
-										GPIO_TypeDef* F_GPIO, uint16_t  F_PIN,
-										GPIO_TypeDef* G_GPIO, uint16_t  G_PIN,
-										GPIO_TypeDef* DOT_GPIO, uint16_t  DOT_PIN);
+										      GPIO_TypeDef* D2_GPIO, uint16_t  D2_PIN,
+										      GPIO_TypeDef* D3_GPIO, uint16_t  D3_PIN,
+										      GPIO_TypeDef* D4_GPIO, uint16_t  D4_PIN,
+										      GPIO_TypeDef* A_GPIO, uint16_t  A_PIN,
+										      GPIO_TypeDef* B_GPIO, uint16_t  B_PIN,
+										      GPIO_TypeDef* C_GPIO, uint16_t  C_PIN,
+										      GPIO_TypeDef* D_GPIO, uint16_t  D_PIN,
+										      GPIO_TypeDef* E_GPIO, uint16_t  E_PIN,
+										      GPIO_TypeDef* F_GPIO, uint16_t  F_PIN,
+										      GPIO_TypeDef* G_GPIO, uint16_t  G_PIN,
+										      GPIO_TypeDef* DOT_GPIO, uint16_t  DOT_PIN);
 </code></pre>
+
+This function initializes a 4-digit 7-segment display by assigning GPIO pins for each digit (D1–D4) and segment (A–G, DOT) and starts a timer for multiplexing. It sets all digit pins LOW (off) and all segment pins HIGH (off for common-anode wiring). The timer is configured with prescaler 7499, counter period 24, and auto-reload preload enabled to generate periodic interrupts that handle rapid digit scanning.
 
 <pre><code class="language-c">void DISPLAY_allSegmentON(void);
 </code></pre>
 
+This function turns on all four digits of the 7-segment display by setting D1–D4 pins HIGH.
+
 <pre><code class="language-c">void DISPLAY_allSegmentOFF(void);
 </code></pre>
+
+This function turns off all four digits of the 7-segment display by setting D1–D4 pins LOW.
 
 <pre><code class="language-c">void DISPLAY_allDigitsOFF(void);
 </code></pre>
 
+This function deactivates all digits on the 7-segment display by setting D1–D4 pins LOW.
+
 <pre><code class="language-c">void DISPLAY_allSegmentBlink(void);
 </code></pre>
+
+This function blinks all digits by toggling D1–D4 pins and turns on all segments by setting their GPIO pins LOW.
 
 <pre><code class="language-c">void DISPLAY_selectDigit(uint8_t digit);
 </code></pre>
 
+This function activates a specific digit (1–4) on the 7-segment display by setting its pin HIGH and turning off the others.
+
 <pre><code class="language-c">void DISPLAY_writeDigit(uint8_t number);
 </code></pre>
 
+This function lights up the segments corresponding to a given digit (0–9) to display that number on the 7-segment display.
+
 <pre><code class="language-c">void DISPLAY_write(volatile uint16_t number);
 </code></pre>
+
+This function splits a number into individual digits, stores them in the display buffer, and sets the scan time while ignoring leading zeros.
 
 # 🖥️ Test Highlights
 
 You can easily test the 7-Segment 4-Digit Display using the following code snippet
 
 <pre><code class="language-c">#include "main.h"
+#include "DISPLAY.h"
+
+TIM_HandleTypeDef htim2;
+extern DISPLAY_TypeDef_t DISPLAY;
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_TIM2_Init(void);
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if (htim->Instance == TIM2)
+    {
+    	DISPLAY_allSegmentOFF();
+    	DISPLAY_allDigitsOFF();
+    	if(DISPLAY.tempCounter <= DISPLAY.scanTime){
+    		DISPLAY_writeDigit(DISPLAY.digitBuffer[DISPLAY.tempCounter]);
+    		DISPLAY_selectDigit(DISPLAY.tempCounter + 1);
+    	}
+    	DISPLAY.tempCounter++;
+    	if(DISPLAY.tempCounter > DISPLAY.scanTime){
+    		DISPLAY.tempCounter = 0;
+    	}
+    }
+}
+
+int main(void)
+{
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+  MX_TIM2_Init();
+  DISPLAY_init(&htim2, GPIOC, GPIO_PIN_8,
+		  	GPIOB, GPIO_PIN_1,
+			GPIOB, GPIO_PIN_15,
+			GPIOC, GPIO_PIN_4,
+			GPIOB, GPIO_PIN_13,
+			GPIOB, GPIO_PIN_2,
+			GPIOC, GPIO_PIN_5,
+			GPIOA, GPIO_PIN_11,
+			GPIOB, GPIO_PIN_12,
+			GPIOB, GPIO_PIN_14,
+			GPIOC, GPIO_PIN_6,
+			GPIOA, GPIO_PIN_12);
+
+  DISPLAY_write(1234);
+
+  while (1)
+  {
+
+  }
+}
 </code></pre>
 
 ![test](images/test.jpg)
