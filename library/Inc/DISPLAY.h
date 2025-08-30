@@ -95,7 +95,6 @@ void DISPLAY_init(TIM_HandleTypeDef * hTIMx, GPIO_TypeDef* D1_GPIO, uint16_t  D1
 																			 GPIO_TypeDef* DOT_GPIO, uint16_t  DOT_PIN);
 void DISPLAY_allSegmentON(void);
 void DISPLAY_allSegmentOFF(void);
-void DISPLAY_allDigitsOFF(void);
 void DISPLAY_allSegmentBlink(void);
 void DISPLAY_selectDigit(uint8_t digit);
 void DISPLAY_writeDigit(uint8_t number);

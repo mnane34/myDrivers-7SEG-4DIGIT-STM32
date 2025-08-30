@@ -61,7 +61,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     if (htim->Instance == TIM2)
     {
     	DISPLAY_allSegmentOFF();
-    	DISPLAY_allDigitsOFF();
     	if(DISPLAY.tempCounter <= DISPLAY.scanTime){
     		DISPLAY_writeDigit(DISPLAY.digitBuffer[DISPLAY.tempCounter]);
     		DISPLAY_selectDigit(DISPLAY.tempCounter + 1);

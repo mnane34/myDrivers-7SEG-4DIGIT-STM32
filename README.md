@@ -65,17 +65,17 @@ In this application, the STM32 Nucleo F446RE development board was used. You can
 # 🚀 Code Explanation
 
 <pre><code class="language-c">void DISPLAY_init(TIM_HandleTypeDef * hTIMx, GPIO_TypeDef* D1_GPIO, uint16_t  D1_PIN,
-										      GPIO_TypeDef* D2_GPIO, uint16_t  D2_PIN,
-										      GPIO_TypeDef* D3_GPIO, uint16_t  D3_PIN,
-										      GPIO_TypeDef* D4_GPIO, uint16_t  D4_PIN,
-										      GPIO_TypeDef* A_GPIO, uint16_t  A_PIN,
-										      GPIO_TypeDef* B_GPIO, uint16_t  B_PIN,
-										      GPIO_TypeDef* C_GPIO, uint16_t  C_PIN,
-										      GPIO_TypeDef* D_GPIO, uint16_t  D_PIN,
-										      GPIO_TypeDef* E_GPIO, uint16_t  E_PIN,
-										      GPIO_TypeDef* F_GPIO, uint16_t  F_PIN,
-										      GPIO_TypeDef* G_GPIO, uint16_t  G_PIN,
-										      GPIO_TypeDef* DOT_GPIO, uint16_t  DOT_PIN);
+										                GPIO_TypeDef* D2_GPIO, uint16_t  D2_PIN,
+										                GPIO_TypeDef* D3_GPIO, uint16_t  D3_PIN,
+										      		GPIO_TypeDef* D4_GPIO, uint16_t  D4_PIN,
+										      		GPIO_TypeDef* A_GPIO, uint16_t  A_PIN,
+										      		GPIO_TypeDef* B_GPIO, uint16_t  B_PIN,
+										      		GPIO_TypeDef* C_GPIO, uint16_t  C_PIN,
+										      		GPIO_TypeDef* D_GPIO, uint16_t  D_PIN,
+										      		GPIO_TypeDef* E_GPIO, uint16_t  E_PIN,
+										      		GPIO_TypeDef* F_GPIO, uint16_t  F_PIN,
+										      		GPIO_TypeDef* G_GPIO, uint16_t  G_PIN,
+										      		GPIO_TypeDef* DOT_GPIO, uint16_t  DOT_PIN);
 </code></pre>
 
 This function initializes a 4-digit 7-segment display by assigning GPIO pins for each digit (D1–D4) and segment (A–G, DOT) and starts a timer for multiplexing. It sets all digit pins LOW (off) and all segment pins HIGH (off for common-anode wiring). The timer is configured with prescaler 7499, counter period 24, and auto-reload preload enabled to generate periodic interrupts that handle rapid digit scanning.
@@ -89,11 +89,6 @@ This function turns on all four digits of the 7-segment display by setting D1–
 </code></pre>
 
 This function turns off all four digits of the 7-segment display by setting D1–D4 pins LOW.
-
-<pre><code class="language-c">void DISPLAY_allDigitsOFF(void);
-</code></pre>
-
-This function deactivates all digits on the 7-segment display by setting D1–D4 pins LOW.
 
 <pre><code class="language-c">void DISPLAY_allSegmentBlink(void);
 </code></pre>
@@ -134,14 +129,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     if (htim->Instance == TIM2)
     {
     	DISPLAY_allSegmentOFF();
-    	DISPLAY_allDigitsOFF();
     	if(DISPLAY.tempCounter <= DISPLAY.scanTime){
-    		DISPLAY_writeDigit(DISPLAY.digitBuffer[DISPLAY.tempCounter]);
-    		DISPLAY_selectDigit(DISPLAY.tempCounter + 1);
+    	   DISPLAY_writeDigit(DISPLAY.digitBuffer[DISPLAY.tempCounter]);
+    	   DISPLAY_selectDigit(DISPLAY.tempCounter + 1);
     	}
     	DISPLAY.tempCounter++;
     	if(DISPLAY.tempCounter > DISPLAY.scanTime){
-    		DISPLAY.tempCounter = 0;
+    	   DISPLAY.tempCounter = 0;
     	}
     }
 }
@@ -169,7 +163,6 @@ int main(void)
 
   while (1)
   {
-
   }
 }
 </code></pre>

@@ -122,17 +122,6 @@ void DISPLAY_allSegmentOFF(void){
 }
 
 /**
- * @brief  Turns off all digits on the display.
- * @retval None
- */
-void DISPLAY_allDigitsOFF(void){
-	GPIO_WRITE_PIN(DISPLAY.D1_GPIOx, DISPLAY.D1_PINx, display_LOW);
-	GPIO_WRITE_PIN(DISPLAY.D2_GPIOx, DISPLAY.D2_PINx, display_LOW);
-	GPIO_WRITE_PIN(DISPLAY.D3_GPIOx, DISPLAY.D3_PINx, display_LOW);
-	GPIO_WRITE_PIN(DISPLAY.D4_GPIOx, DISPLAY.D4_PINx, display_LOW);
-}
-
-/**
  * @brief  Toggles all digit control lines and forces all segments ON.
  * @retval None
  */
