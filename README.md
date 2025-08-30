@@ -149,17 +149,17 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   DISPLAY_init(&htim2, GPIOC, GPIO_PIN_8,
-		  	      GPIOB, GPIO_PIN_1,
-			      GPIOB, GPIO_PIN_15,
-			      GPIOC, GPIO_PIN_4,
-			      GPIOB, GPIO_PIN_13,
-			      GPIOB, GPIO_PIN_2,
-			      GPIOC, GPIO_PIN_5,
-			      GPIOA, GPIO_PIN_11,
-			      GPIOB, GPIO_PIN_12,
-			      GPIOB, GPIO_PIN_14,
-			      GPIOC, GPIO_PIN_6,
-			      GPIOA, GPIO_PIN_12);
+		  	           GPIOB, GPIO_PIN_1,
+			           GPIOB, GPIO_PIN_15,
+			           GPIOC, GPIO_PIN_4,
+			           GPIOB, GPIO_PIN_13,
+			           GPIOB, GPIO_PIN_2,
+			           GPIOC, GPIO_PIN_5,
+			           GPIOA, GPIO_PIN_11,
+			           GPIOB, GPIO_PIN_12,
+			           GPIOB, GPIO_PIN_14,
+			           GPIOC, GPIO_PIN_6,
+			           GPIOA, GPIO_PIN_12);
 
   DISPLAY_write(1234);
 
