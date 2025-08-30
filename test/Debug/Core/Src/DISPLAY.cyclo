@@ -1,0 +1,8 @@
+../Core/Src/DISPLAY.c:36:6:DISPLAY_init	1
+../Core/Src/DISPLAY.c:106:6:DISPLAY_allSegmentON	1
+../Core/Src/DISPLAY.c:117:6:DISPLAY_allSegmentOFF	1
+../Core/Src/DISPLAY.c:128:6:DISPLAY_allDigitsOFF	1
+../Core/Src/DISPLAY.c:139:6:DISPLAY_allSegmentBlink	1
+../Core/Src/DISPLAY.c:161:6:DISPLAY_selectDigit	5
+../Core/Src/DISPLAY.c:202:6:DISPLAY_writeDigit	11
+../Core/Src/DISPLAY.c:300:6:DISPLAY_write	4
