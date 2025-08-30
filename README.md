@@ -78,7 +78,9 @@ In this application, the STM32 Nucleo F446RE development board was used. You can
 										     GPIO_TypeDef* DOT_GPIO, uint16_t  DOT_PIN);
 </code></pre>
 
-This function initializes a 4-digit 7-segment display by assigning GPIO pins for digits (D1–D4) and segments (A–G, DOT), starts a timer for multiplexing, and sets all digit pins LOW and segment pins HIGH for common-anode wiring.The timer is configured with prescaler 7499, counter period 24, and auto-reload preload enabled to generate periodic interrupts that handle rapid digit scanning.
+This function initializes a 4-digit 7-segment display by assigning GPIO pins for digits (D1–D4) and segments (A–G, DOT), starts a timer for multiplexing, and sets all digit pins LOW and segment pins HIGH for common-anode wiring.
+
+The timer is configured with prescaler 7499, counter period 24, and auto-reload preload enabled to generate periodic interrupts that handle rapid digit scanning.
 
 <pre><code class="language-c">void DISPLAY_allSegmentON(void);
 </code></pre>
@@ -147,17 +149,17 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   DISPLAY_init(&htim2, GPIOC, GPIO_PIN_8,
-		  	GPIOB, GPIO_PIN_1,
-			GPIOB, GPIO_PIN_15,
-			GPIOC, GPIO_PIN_4,
-			GPIOB, GPIO_PIN_13,
-			GPIOB, GPIO_PIN_2,
-			GPIOC, GPIO_PIN_5,
-			GPIOA, GPIO_PIN_11,
-			GPIOB, GPIO_PIN_12,
-			GPIOB, GPIO_PIN_14,
-			GPIOC, GPIO_PIN_6,
-			GPIOA, GPIO_PIN_12);
+		  	      GPIOB, GPIO_PIN_1,
+			      GPIOB, GPIO_PIN_15,
+			      GPIOC, GPIO_PIN_4,
+			      GPIOB, GPIO_PIN_13,
+			      GPIOB, GPIO_PIN_2,
+			      GPIOC, GPIO_PIN_5,
+			      GPIOA, GPIO_PIN_11,
+			      GPIOB, GPIO_PIN_12,
+			      GPIOB, GPIO_PIN_14,
+			      GPIOC, GPIO_PIN_6,
+			      GPIOA, GPIO_PIN_12);
 
   DISPLAY_write(1234);
 
