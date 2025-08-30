@@ -58,24 +58,24 @@ Controls segment G of all digits, forming part of the displayed number.
 
 Controls the decimal point segment of all digits. Can be turned ON or OFF independently.
 
-![Shematic](images/shematic.PNG)
+![Shematic](images/shematic.png)
 
 In this application, the STM32 Nucleo F446RE development board was used. You can refer to the above wiring diagram.
 
 # 🚀 Code Explanation
 
 <pre><code class="language-c">void DISPLAY_init(TIM_HandleTypeDef * hTIMx, GPIO_TypeDef* D1_GPIO, uint16_t  D1_PIN,
-										      GPIO_TypeDef* D2_GPIO, uint16_t  D2_PIN,
-										      GPIO_TypeDef* D3_GPIO, uint16_t  D3_PIN,
-										      GPIO_TypeDef* D4_GPIO, uint16_t  D4_PIN,
-										      GPIO_TypeDef* A_GPIO, uint16_t  A_PIN,
-										      GPIO_TypeDef* B_GPIO, uint16_t  B_PIN,
-										      GPIO_TypeDef* C_GPIO, uint16_t  C_PIN,
-										      GPIO_TypeDef* D_GPIO, uint16_t  D_PIN,
-										      GPIO_TypeDef* E_GPIO, uint16_t  E_PIN,
-										      GPIO_TypeDef* F_GPIO, uint16_t  F_PIN,
-										      GPIO_TypeDef* G_GPIO, uint16_t  G_PIN,
-										      GPIO_TypeDef* DOT_GPIO, uint16_t  DOT_PIN);
+										     GPIO_TypeDef* D2_GPIO, uint16_t  D2_PIN,
+										     GPIO_TypeDef* D3_GPIO, uint16_t  D3_PIN,
+										     GPIO_TypeDef* D4_GPIO, uint16_t  D4_PIN,
+										     GPIO_TypeDef* A_GPIO, uint16_t  A_PIN,
+										     GPIO_TypeDef* B_GPIO, uint16_t  B_PIN,
+										     GPIO_TypeDef* C_GPIO, uint16_t  C_PIN,
+										     GPIO_TypeDef* D_GPIO, uint16_t  D_PIN,
+										     GPIO_TypeDef* E_GPIO, uint16_t  E_PIN,
+										     GPIO_TypeDef* F_GPIO, uint16_t  F_PIN,
+										     GPIO_TypeDef* G_GPIO, uint16_t  G_PIN,
+										     GPIO_TypeDef* DOT_GPIO, uint16_t  DOT_PIN);
 </code></pre>
 
 This function initializes a 4-digit 7-segment display by assigning GPIO pins for digits (D1–D4) and segments (A–G, DOT), starts a timer for multiplexing, and sets all digit pins LOW and segment pins HIGH for common-anode wiring.The timer is configured with prescaler 7499, counter period 24, and auto-reload preload enabled to generate periodic interrupts that handle rapid digit scanning.
