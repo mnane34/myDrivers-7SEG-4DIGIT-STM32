@@ -11,51 +11,39 @@ Using a 7-Segment 4-Digit Display, connect its segment and digit control pins to
 # 🛠️ Electrical Diagram
 
 - **D1 (Digit 1 Control Pin)**<br>
-
 Controls the first digit (leftmost). Setting HIGH or LOW (depending on common-anode/cathode) turns the digit ON or OFF.
 
 - **D2 (Digit 2 Control Pin)**<br>
-
 Controls the second digit. Used in multiplexing to select which digit is active.
 
 - **D3 (Digit 3 Control Pin)**<br>
-
 Controls the third digit. Activated during multiplexing to display its corresponding number.
 
 - **D4 (Digit 4 Control Pin)**<br>
-
 Controls the fourth digit. Only one digit is usually active at a time in multiplexing.
 
 - **A (Segment A Pin)**<br>
-
 Controls segment A of all digits, forming part of the displayed number.
 
 - **B (Segment B Pin)**<br>
-
 Controls segment B of all digits, forming part of the displayed number.
 
 - **C (Segment C Pin)**<br>
-
 Controls segment C of all digits, forming part of the displayed number.
 
 - **D (Segment D Pin)**<br>
-
 Controls segment D of all digits, forming part of the displayed number.
 
 - **E (Segment E Pin)**<br>
-
 Controls segment E of all digits, forming part of the displayed number.
 
 - **F (Segment F Pin)**<br>
-
 Controls segment F of all digits, forming part of the displayed number.
 
 - **G (Segment G Pin)**<br>
-
 Controls segment G of all digits, forming part of the displayed number.
 
 - **DOT (Decimal Point Pin)**<br>
-
 Controls the decimal point segment of all digits. Can be turned ON or OFF independently.
 
 ![Shematic](images/shematic.png)
